@@ -30,6 +30,8 @@ namespace att_hw
             }
         }
 
+        public bool is_black { get { return Color.Black == m_color; } }
+
     } // class CPixel
 
 } // namespace att_hw
