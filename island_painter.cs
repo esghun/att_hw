@@ -30,11 +30,10 @@ namespace att_hw
         {
             int n_isle_count = 0;
 
-            for ( int x = 0; x < _board.width; x++ )
-                for ( int y = 0; y < _board.height; y++ )
+            for ( int y = 0; y < _board.height; y++ )
+                for ( int x = 0; x < _board.width; x++ )
                 {
-                    CPixel _pixel = _board.pixel(x, y);
-                    if ( !_pixel.is_black )
+                    if ( !_board.is_black_pixel(x, y) )
                         continue;
 
                     n_isle_count++;
@@ -46,11 +45,11 @@ namespace att_hw
         }
 
 
-        private static void paint_isle(int n_src_x, int n_src_y, Color _color, CBoard _board)
+        private static void paint_isle(int n_src_x, int n_src_y, int n_color, CBoard _board)
         {        
             Stack<CPathNode> _path = new Stack<CPathNode>();
 
-            paint_n_push(n_src_x, n_src_y, _color, _board, _path);
+            paint_n_push(n_src_x, n_src_y, n_color, _board, _path);
 
             while ( 0 != _path.Count )
             {
@@ -72,10 +71,9 @@ namespace att_hw
                     if ( 0 > n_neighbour_y || _board.height <= n_neighbour_y )
                         continue;
                     
-                    CPixel _neighbour = _board.pixel(n_neighbour_x, n_neighbour_y);
-                    if ( _neighbour.is_black )
+                    if ( _board.is_black_pixel(n_neighbour_x, n_neighbour_y) )
                     {
-                        paint_n_push(n_neighbour_x, n_neighbour_y, _color, _board, _path);
+                        paint_n_push(n_neighbour_x, n_neighbour_y, n_color, _board, _path);
                         b_is_painted = true;
                         break;
                     }
@@ -97,12 +95,12 @@ namespace att_hw
             int x: 
             int y: 
             Color _color: 
-            CBoard _board: 
+            int n_color: 
             Stack<CPathNode> _path: 
         \* --------------------------------------------------------------------------------- */
-        private static void paint_n_push(int x, int y, Color _color, CBoard _board, Stack<CPathNode> _path)
+        private static void paint_n_push(int x, int y, int n_color, CBoard _board, Stack<CPathNode> _path)
         {
-            _board.pixel(x, y).color = _color;
+            _board.set_pixel_color(x, y, n_color);
             _path.Push( new CPathNode(x, y) );
         }
 

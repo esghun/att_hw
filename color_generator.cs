@@ -22,9 +22,9 @@ namespace att_hw
         /* --------------------------------------------------------------------------------- *\
           Description: 
         
-          Returns Color:
+          Returns int:
         \* --------------------------------------------------------------------------------- */
-        public Color generate_color()
+        public int generate_color()
         {
             if ( mhs_colors.Count >= 0x1000000 )
                 throw new Exception("Max possible number of colors reached");
@@ -34,7 +34,7 @@ namespace att_hw
                 Color _color = Color.FromArgb(m_rndm.Next(256), m_rndm.Next(256), m_rndm.Next(256));
 
                 if ( mhs_colors.Add(_color) )
-                    return _color;
+                    return _color.ToArgb();
             }
         }
 

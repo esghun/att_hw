@@ -35,16 +35,30 @@ namespace att_hw
 
             int n_white_black_ratio = (int)(NudWhiteBlackRatio.Value);
 
-            for ( int i = 0; i < m_board.width; i++ )
-                for ( int j = 0; j < m_board.height; j++ )
-                {
-                    CPixel _pixel = m_board.pixel(i, j);
+            int n_white = Color.White.ToArgb();
+            int n_black = Color.Black.ToArgb();
 
-                    if ( 0 == m_rndm.Next(n_white_black_ratio+1) )
-                        _pixel.color = Color.Black;
-                    else
-                        _pixel.color = Color.White;
-                }
+//            int n_seed = (int)((DateTime.Now - DateTime.Today).TotalMilliseconds);
+//            Parallel.For(0, m_board.height, 
+//                (j) =>
+//                {
+//                    Random _rndm = new Random(n_seed + j);
+//                    for ( int i = 0; i < m_board.width; i++ )
+//                    {
+//                        if ( 0 == _rndm.Next(n_white_black_ratio+1) )
+//                            m_board.set_pixel_color(i, j, n_black);
+//                        else
+//                            m_board.set_pixel_color(i, j, n_white);
+//                    }
+//                } );
+
+            for ( int i = 0; i < m_board.width*m_board.height; i++ )
+            {
+                if ( 0 == m_rndm.Next(n_white_black_ratio+1) )
+                    m_board.set_pixel_color(i, n_black);
+                else
+                    m_board.set_pixel_color(i, n_white);
+            }
 
             draw_board();
 
@@ -70,13 +84,21 @@ BtnSolve.Enabled = false;
         private void draw_board()
         {
             Bitmap _bmp = new Bitmap(m_board.width, m_board.height);
-            
-            for ( int i = 0; i < m_board.width; i++ )
-                for ( int j = 0; j < m_board.height; j++ )
-                {
-                    CPixel _pixel = m_board.pixel(i, j);
-                    _bmp.SetPixel(i, j, _pixel.color);
-                }
+
+            Rectangle _rect = new Rectangle(0, 0, _bmp.Width, _bmp.Height);
+            System.Drawing.Imaging.BitmapData _bmp_data = _bmp.LockBits
+            (
+                _rect,
+                System.Drawing.Imaging.ImageLockMode.ReadWrite,
+                _bmp.PixelFormat
+            );
+
+            m_board.get_all_pixels(_bmp_data.Scan0);
+
+            _bmp.UnlockBits(_bmp_data);
+
+            if ( null != PbImage.Image )
+                PbImage.Image.Dispose();
 
             PbImage.Image = _bmp;
         }

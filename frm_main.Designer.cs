@@ -151,7 +151,7 @@
             // 
             // BtnCreate
             // 
-            this.BtnCreate.Location = new System.Drawing.Point(525, 9);
+            this.BtnCreate.Location = new System.Drawing.Point(323, 7);
             this.BtnCreate.Name = "BtnCreate";
             this.BtnCreate.Size = new System.Drawing.Size(78, 31);
             this.BtnCreate.TabIndex = 8;
@@ -170,7 +170,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(328, 14);
+            this.label3.Location = new System.Drawing.Point(444, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 17);
             this.label3.TabIndex = 11;
@@ -178,7 +178,7 @@
             // 
             // NudWhiteBlackRatio
             // 
-            this.NudWhiteBlackRatio.Location = new System.Drawing.Point(453, 12);
+            this.NudWhiteBlackRatio.Location = new System.Drawing.Point(569, 14);
             this.NudWhiteBlackRatio.Maximum = new decimal(new int[] {
             1000,
             0,
