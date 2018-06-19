@@ -40,15 +40,17 @@
             this.LblRes = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.NudWhiteBlackRatio = new System.Windows.Forms.NumericUpDown();
+            this.PnlInit = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.PbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudWhiteBlackRatio)).BeginInit();
+            this.PnlInit.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnRandomize
             // 
-            this.BtnRandomize.Location = new System.Drawing.Point(641, 9);
+            this.BtnRandomize.Location = new System.Drawing.Point(642, 15);
             this.BtnRandomize.Name = "BtnRandomize";
             this.BtnRandomize.Size = new System.Drawing.Size(106, 31);
             this.BtnRandomize.TabIndex = 0;
@@ -58,7 +60,7 @@
             // 
             // BtnSolve
             // 
-            this.BtnSolve.Location = new System.Drawing.Point(865, 9);
+            this.BtnSolve.Location = new System.Drawing.Point(754, 15);
             this.BtnSolve.Name = "BtnSolve";
             this.BtnSolve.Size = new System.Drawing.Size(106, 31);
             this.BtnSolve.TabIndex = 1;
@@ -68,28 +70,30 @@
             // 
             // BtnClear
             // 
-            this.BtnClear.Enabled = false;
-            this.BtnClear.Location = new System.Drawing.Point(753, 9);
+            this.BtnClear.Location = new System.Drawing.Point(866, 15);
             this.BtnClear.Name = "BtnClear";
             this.BtnClear.Size = new System.Drawing.Size(106, 31);
             this.BtnClear.TabIndex = 2;
             this.BtnClear.Text = "Clear";
             this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // PbImage
             // 
             this.PbImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PbImage.Location = new System.Drawing.Point(13, 46);
+            this.PbImage.Location = new System.Drawing.Point(13, 58);
             this.PbImage.Name = "PbImage";
-            this.PbImage.Size = new System.Drawing.Size(1225, 686);
+            this.PbImage.Size = new System.Drawing.Size(1225, 674);
             this.PbImage.TabIndex = 3;
             this.PbImage.TabStop = false;
+            this.PbImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PbImage_MouseClick);
+            this.PbImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PbImage_MouseMove);
             // 
             // NudWidth
             // 
-            this.NudWidth.Location = new System.Drawing.Point(67, 12);
+            this.NudWidth.Location = new System.Drawing.Point(65, 8);
             this.NudWidth.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -104,7 +108,7 @@
             this.NudWidth.Size = new System.Drawing.Size(82, 22);
             this.NudWidth.TabIndex = 4;
             this.NudWidth.Value = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             0});
@@ -112,7 +116,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 14);
+            this.label1.Location = new System.Drawing.Point(10, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 17);
             this.label1.TabIndex = 5;
@@ -121,7 +125,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(171, 14);
+            this.label2.Location = new System.Drawing.Point(169, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 17);
             this.label2.TabIndex = 7;
@@ -129,7 +133,7 @@
             // 
             // NudHeight
             // 
-            this.NudHeight.Location = new System.Drawing.Point(226, 12);
+            this.NudHeight.Location = new System.Drawing.Point(224, 8);
             this.NudHeight.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -144,14 +148,14 @@
             this.NudHeight.Size = new System.Drawing.Size(82, 22);
             this.NudHeight.TabIndex = 6;
             this.NudHeight.Value = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             0});
             // 
             // BtnCreate
             // 
-            this.BtnCreate.Location = new System.Drawing.Point(323, 7);
+            this.BtnCreate.Location = new System.Drawing.Point(321, 3);
             this.BtnCreate.Name = "BtnCreate";
             this.BtnCreate.Size = new System.Drawing.Size(78, 31);
             this.BtnCreate.TabIndex = 8;
@@ -162,7 +166,7 @@
             // LblRes
             // 
             this.LblRes.AutoSize = true;
-            this.LblRes.Location = new System.Drawing.Point(978, 10);
+            this.LblRes.Location = new System.Drawing.Point(980, 10);
             this.LblRes.Name = "LblRes";
             this.LblRes.Size = new System.Drawing.Size(0, 17);
             this.LblRes.TabIndex = 9;
@@ -170,7 +174,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(444, 16);
+            this.label3.Location = new System.Drawing.Point(445, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 17);
             this.label3.TabIndex = 11;
@@ -178,7 +182,7 @@
             // 
             // NudWhiteBlackRatio
             // 
-            this.NudWhiteBlackRatio.Location = new System.Drawing.Point(569, 14);
+            this.NudWhiteBlackRatio.Location = new System.Drawing.Point(570, 20);
             this.NudWhiteBlackRatio.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -193,19 +197,27 @@
             0,
             0});
             // 
+            // PnlInit
+            // 
+            this.PnlInit.Controls.Add(this.BtnCreate);
+            this.PnlInit.Controls.Add(this.NudWidth);
+            this.PnlInit.Controls.Add(this.label1);
+            this.PnlInit.Controls.Add(this.NudHeight);
+            this.PnlInit.Controls.Add(this.label2);
+            this.PnlInit.Location = new System.Drawing.Point(12, 12);
+            this.PnlInit.Name = "PnlInit";
+            this.PnlInit.Size = new System.Drawing.Size(408, 40);
+            this.PnlInit.TabIndex = 12;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1250, 744);
+            this.Controls.Add(this.PnlInit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.NudWhiteBlackRatio);
             this.Controls.Add(this.LblRes);
-            this.Controls.Add(this.BtnCreate);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.NudHeight);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.NudWidth);
             this.Controls.Add(this.PbImage);
             this.Controls.Add(this.BtnClear);
             this.Controls.Add(this.BtnSolve);
@@ -216,6 +228,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NudWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudWhiteBlackRatio)).EndInit();
+            this.PnlInit.ResumeLayout(false);
+            this.PnlInit.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,6 +249,7 @@
         private System.Windows.Forms.Label LblRes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown NudWhiteBlackRatio;
+        private System.Windows.Forms.Panel PnlInit;
     }
 }
 

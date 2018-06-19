@@ -9,7 +9,8 @@ namespace att_hw
 {
     class CIslandPainter
     {
-        private static readonly Tuple<int, int>[] ma_neighbours;
+        private static readonly Tuple<int, int>[] ma_neighbours; // List of coordinates offsets
+                                                                 // of all possible neighbours
 
         static CIslandPainter()
         {
@@ -26,6 +27,17 @@ namespace att_hw
             };
         }
 
+
+        /* --------------------------------------------------------------------------------- *\
+          Description: 
+            Paint and count all islands
+            
+          Parameters:
+            CBoard _board: 
+            CColorGenerator _color_generator: 
+        
+          Returns int:
+        \* --------------------------------------------------------------------------------- */
         public static int paint(CBoard _board, CColorGenerator _color_generator)
         {
             int n_isle_count = 0;
@@ -45,6 +57,16 @@ namespace att_hw
         }
 
 
+        /* --------------------------------------------------------------------------------- *\
+          Description: 
+            Paint a single isle using DFS to find all relevant pixels
+            
+          Parameters:
+            int n_src_x: 
+            int n_src_y: 
+            int n_color: 
+            CBoard _board: 
+        \* --------------------------------------------------------------------------------- */
         private static void paint_isle(int n_src_x, int n_src_y, int n_color, CBoard _board)
         {        
             Stack<CPathNode> _path = new Stack<CPathNode>();

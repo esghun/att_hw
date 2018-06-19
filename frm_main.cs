@@ -14,6 +14,7 @@ namespace att_hw
     {
         private CBoard m_board = null;
         private Random m_rndm = null;
+        private Bitmap m_bmp = null;
 
         private CColorGenerator m_color_gnrtr = null;
 
@@ -29,6 +30,8 @@ namespace att_hw
                 MessageBox.Show( "Board is not initialized" );
                 return;
             }
+
+            m_board.reset();
 
             if ( null == m_rndm )
                 m_rndm = new Random();
@@ -61,15 +64,16 @@ namespace att_hw
             }
 
             draw_board();
-
-BtnRandomize.Enabled = false;
         }
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
             m_board = new CBoard(NudWidth.Value, NudHeight.Value);
             m_color_gnrtr = new CColorGenerator();
-BtnCreate.Enabled = false;
+
+            PnlInit.Enabled = false;
+
+            draw_board();
         }
 
         private void BtnSolve_Click(object sender, EventArgs e)
@@ -78,30 +82,75 @@ BtnCreate.Enabled = false;
             draw_board();
 
             LblRes.Text = $"Found {n_isle_count} islands";
-BtnSolve.Enabled = false;
         }
 
+
+        /* --------------------------------------------------------------------------------- *\
+          Description: 
+        \* --------------------------------------------------------------------------------- */
         private void draw_board()
         {
-            Bitmap _bmp = new Bitmap(m_board.width, m_board.height);
+            m_bmp = new Bitmap(m_board.width, m_board.height);
 
-            Rectangle _rect = new Rectangle(0, 0, _bmp.Width, _bmp.Height);
-            System.Drawing.Imaging.BitmapData _bmp_data = _bmp.LockBits
+            Rectangle _rect = new Rectangle(0, 0, m_bmp.Width, m_bmp.Height);
+            System.Drawing.Imaging.BitmapData _bmp_data = m_bmp.LockBits
             (
                 _rect,
                 System.Drawing.Imaging.ImageLockMode.ReadWrite,
-                _bmp.PixelFormat
+                m_bmp.PixelFormat
             );
 
             m_board.get_all_pixels(_bmp_data.Scan0);
 
-            _bmp.UnlockBits(_bmp_data);
+            m_bmp.UnlockBits(_bmp_data);
 
-            if ( null != PbImage.Image )
-                PbImage.Image.Dispose();
-
-            PbImage.Image = _bmp;
+            PbImage.Image = m_bmp;
         }
 
-    }
-}
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            LblRes.Text = "";
+
+            m_board.reset();
+            draw_board();
+        }
+
+        private void PbImage_MouseClick(object sender, MouseEventArgs e)
+        {
+            draw_pixel(e.X, e.Y);
+        }
+
+        private void PbImage_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ( MouseButtons != MouseButtons.Left )
+                return;
+
+            draw_pixel(e.X, e.Y);
+        }
+
+
+        /* --------------------------------------------------------------------------------- *\
+          Description: 
+            
+          Parameters:
+            int x: 
+            int y: 
+        \* --------------------------------------------------------------------------------- */
+        private void draw_pixel(int x, int y)
+        {
+            if ( null == m_bmp )
+                return;
+
+            if ( m_board.width <= x || m_board.height <= y || 0 > x || 0 > y )
+                return;
+
+            m_board.set_pixel_color( x, y, Color.Black.ToArgb() );
+
+            m_bmp.SetPixel(x, y, Color.Black);
+
+            PbImage.Image = m_bmp;
+        }
+
+    } // class FrmMain
+
+} // namespace att_hw

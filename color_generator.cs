@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace att_hw
 {
+
+    // Class fore generating random unique color
     class CColorGenerator
     {
         private readonly HashSet<Color> mhs_colors = new HashSet<Color>();
