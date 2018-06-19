@@ -31,6 +31,8 @@ namespace att_hw
                 return;
             }
 
+            Cursor = Cursors.WaitCursor;
+
             m_board.reset();
 
             if ( null == m_rndm )
@@ -64,24 +66,34 @@ namespace att_hw
             }
 
             draw_board();
+
+            Cursor = Cursors.Default;
         }
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+            
             m_board = new CBoard(NudWidth.Value, NudHeight.Value);
             m_color_gnrtr = new CColorGenerator();
 
             PnlInit.Enabled = false;
 
             draw_board();
+
+            Cursor = Cursors.Default;
         }
 
         private void BtnSolve_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             int n_isle_count = CIslandPainter.paint(m_board, m_color_gnrtr);
             draw_board();
 
             LblRes.Text = $"Found {n_isle_count} islands";
+
+            Cursor = Cursors.Default;
         }
 
 

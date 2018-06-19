@@ -63,19 +63,17 @@ namespace att_hw
             return Color.FromArgb( ma_pixels[ pixel_ind(x, y) ] );
         }
 
-
+        
         /* --------------------------------------------------------------------------------- *\
           Description: 
             
           Parameters:
-            int x: 
-            int y: 
+            int n_pixel_ind: 
         
           Returns bool:
         \* --------------------------------------------------------------------------------- */
-        public bool is_black_pixel(int x, int y)
+        public bool is_black_pixel(int n_pixel_ind)
         {
-            int n_pixel_ind = pixel_ind(x, y);
             int n_pixel_value = ma_pixels[ n_pixel_ind ];
             bool b_is_same = mn_BLACK == n_pixel_value;
             return b_is_same;
@@ -139,7 +137,7 @@ namespace att_hw
         
           Returns int:
         \* --------------------------------------------------------------------------------- */
-        private int pixel_ind(int x, int y)
+        public int pixel_ind(int x, int y)
         {
             return y * width + x;
         }

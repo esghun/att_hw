@@ -45,12 +45,14 @@ namespace att_hw
             for ( int y = 0; y < _board.height; y++ )
                 for ( int x = 0; x < _board.width; x++ )
                 {
-                    if ( !_board.is_black_pixel(x, y) )
+                    int n_pixel_ind = _board.pixel_ind(x, y);
+
+                    if ( !_board.is_black_pixel(n_pixel_ind) )
                         continue;
 
                     n_isle_count++;
 
-                    paint_isle(x, y, _color_generator.generate_color(), _board);
+                    paint_isle(x, y, n_pixel_ind, _color_generator.generate_color(), _board);
                 }
 
             return n_isle_count;
@@ -64,14 +66,15 @@ namespace att_hw
           Parameters:
             int n_src_x: 
             int n_src_y: 
+            int n_pixel_ind: 
             int n_color: 
             CBoard _board: 
         \* --------------------------------------------------------------------------------- */
-        private static void paint_isle(int n_src_x, int n_src_y, int n_color, CBoard _board)
+        private static void paint_isle(int n_src_x, int n_src_y, int n_pixel_ind, int n_color, CBoard _board)
         {        
             Stack<CPathNode> _path = new Stack<CPathNode>();
 
-            paint_n_push(n_src_x, n_src_y, n_color, _board, _path);
+            paint_n_push(n_src_x, n_src_y, n_pixel_ind, n_color, _board, _path);
 
             while ( 0 != _path.Count )
             {
@@ -92,10 +95,12 @@ namespace att_hw
                         continue;
                     if ( 0 > n_neighbour_y || _board.height <= n_neighbour_y )
                         continue;
+
+                    int n_neighbour_ind = _board.pixel_ind(n_neighbour_x, n_neighbour_y);
                     
-                    if ( _board.is_black_pixel(n_neighbour_x, n_neighbour_y) )
+                    if ( _board.is_black_pixel(n_neighbour_ind) )
                     {
-                        paint_n_push(n_neighbour_x, n_neighbour_y, n_color, _board, _path);
+                        paint_n_push(n_neighbour_x, n_neighbour_y, n_neighbour_ind, n_color, _board, _path);
                         b_is_painted = true;
                         break;
                     }
@@ -116,13 +121,14 @@ namespace att_hw
           Parameters:
             int x: 
             int y: 
+            int n_pixel_ind: 
             Color _color: 
             int n_color: 
             Stack<CPathNode> _path: 
         \* --------------------------------------------------------------------------------- */
-        private static void paint_n_push(int x, int y, int n_color, CBoard _board, Stack<CPathNode> _path)
+        private static void paint_n_push(int x, int y, int n_pixel_ind, int n_color, CBoard _board, Stack<CPathNode> _path)
         {
-            _board.set_pixel_color(x, y, n_color);
+            _board.set_pixel_color(n_pixel_ind, n_color);
             _path.Push( new CPathNode(x, y) );
         }
 
