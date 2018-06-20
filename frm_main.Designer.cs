@@ -166,7 +166,7 @@
             // LblRes
             // 
             this.LblRes.AutoSize = true;
-            this.LblRes.Location = new System.Drawing.Point(980, 10);
+            this.LblRes.Location = new System.Drawing.Point(980, 22);
             this.LblRes.Name = "LblRes";
             this.LblRes.Size = new System.Drawing.Size(0, 17);
             this.LblRes.TabIndex = 9;
@@ -174,7 +174,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(445, 22);
+            this.label3.Location = new System.Drawing.Point(444, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 17);
             this.label3.TabIndex = 11;
